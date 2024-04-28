@@ -1,0 +1,17 @@
+{
+  "name": "mvc-project",
+  "version": "1.0.0",
+  "description": "aplikacja, która umożliwi użytkownikom śledzenie postępów w nauce\r różnych przedmiotów lub umiejętności. Użytkownicy mogą dodawać nowe przedmioty do śledzenia,\r oznaczać postępy i monitorować swoje osiągnięcia.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1"
+  }
+}
