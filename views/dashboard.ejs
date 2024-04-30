@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/nav.ejs') %>
+
+
+    <div class="vertical_list">
+        <% let i = 0 %>
+        <% subjects.forEach(subject => { %>
+            <div class="vertical_subject">
+                <% if subject.marks.length < 15 %>
+                <p class="subject_title"><%= subject.title %></p>
+                <% else %>
+                <div class="marks flex">
+                    <ul class="marks_list" id="<%= subject.title %>">
+                        <% i = 0; %>
+                        <% subject.marks.forEach(mark => { %>
+                            <li class="mark <%= subject.title %>_mark">
+                                <p><%= mark %></p>
+                                <button id="<%= i %>" class="transparent delete delete_mark"></button> 
+                            </li>
+                            <% i = i+1; %>
+                        <% }); %>
+                        <form class="add_mark_form" id="addMarkForm_<%= subject.title %>" method="POST">
+                            <li class="add_mark">
+                                <select name="mark" required>
+                                    <option value=2.0>2.0</option>
+                                    <option value=3.0>3.0</option>
+                                    <option value=3.5>3.5</option>
+                                    <option value=4.0>4.0</option>
+                                    <option value=4.5>4.5</option>
+                                    <option value=5.0>5.0</option>
+                                    <option value=5.5>5.5</option>
+                                    <option value=6.0>6.0</option>
+                                </select><button class="add_mark_button" type="submit">&#x002B;</button>
+                            </li>
+                        </form>
+
+                    </ul>
+    
+                </div>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const form = document.getElementById('addMarkForm_<%= subject.title %>');
+                    const ul = document.getElementById('<%= subject.title %>');
+                    form.addEventListener('submit', function(event) {
+                        event.preventDefault(); // Prevent the default form submission
+                
+                        const mark = form.elements.mark.value; // Get the selected mark
+                        // Prepare the request body
+                        const requestBody = {
+                            name: '<%= subject.title %>',
+                            mark: mark
+                        };
+                
+                        // Send the fetch request
+                        fetch('/dashboard/add-mark', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(requestBody)
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+
+                            let last_id =ul.querySelectorAll('.mark').length;;
+                            console.log(last_id);
+
+                            const li = document.createElement('li');
+                            li.className = 'mark <%= subject.title %>_mark';
+                            li.innerHTML = `<p>${mark}</p><button id="${last_id}" class="transparent delete delete_mark"></button>`;
+
+                            ul.insertBefore(li, form);
+
+                            form.reset();
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                        });
+                    });
+                });
+                </script>
+        <% }); %>
+        
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select all delete buttons
+        const deleteButtons = document.querySelectorAll('.delete_mark');
+    
+        // Attach click event listener to each button
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Get the ID from the button's ID attribute
+                const id = this.id;
+    
+                // Send a fetch request to the server to delete the item
+                fetch(`/dashboard/delete-mark`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: id, name: button.parentElement.parentElement.id })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    this.parentElement.remove();
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            });
+        });
+    });
+    </script>
+
+</html>

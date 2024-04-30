@@ -12,6 +12,9 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "mongoose": "^8.3.1"
+    "express-session": "^1.18.0",
+    "mongoose": "^8.3.1",
+    "plotly.js": "^2.32.0",
+    "plotly.js-dist": "^2.32.0"
   }
 }

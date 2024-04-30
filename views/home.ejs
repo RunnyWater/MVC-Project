@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/nav.ejs') %>
+        <div class="subjects">
+            <% subjects.forEach(subject => { %>
+                <div class="subject">
+                    <a href="/subjects#<%= subject.title %>-div" style="text-decoration: none; color: black;" class="subject_link"><%= subject.title %></a>
+                    <!-- <h3><%= subject.title %></h3> -->
+                    <p class="avg">Average: <%= subject.avg %></p>
+                </div>
+            <% }); %>
+            <div class="add-new">
+                <a href="/subjects/add">ADD NEW +</a>
+              </div>
+        </div>
+
+</body>
+</html>

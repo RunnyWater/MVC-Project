@@ -1,0 +1,339 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    overflow-x: auto; /* Prevents horizontal scrolling */
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #e0f2fe;
+}
+#subjects{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navigation__link{
+    text-align: center;
+    width: 185px;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 12px;
+    line-height: inherit;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    background: none;
+    border: none;
+}
+
+.navigation__link:hover{
+    background: #116b79;
+}
+
+#nav{
+    background: #17a2b8;
+    color: black;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
+    font-size: 25px;
+    line-height: 1;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+}
+
+#nav_list{
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px auto;
+    max-width: 1010px;
+    padding: 0px 10px;
+    position: relative;
+    justify-content: space-between;
+}
+.subjects {
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    top: 100px;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.subject {
+    flex: 0 0 calc(50% - 10px);
+    justify-content: space-between;
+    text-align: center;
+
+    height: 100px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    padding-top: 15px;
+    border-radius: 15px;
+    font-size: 35px;
+}
+.avg{
+    font-size: 20px;
+}
+
+
+.add-new {
+    padding-bottom: 50px;
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+
+}
+
+.add-new a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #17a2b8;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.flex {
+    display: flex;
+}
+
+.list{
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+.title_div{
+    height: 100px;
+    text-align: center;
+}
+.list_item{
+    flex-direction: column;
+    position: relative;
+    margin-left: 15%;
+    margin-right: 15%;
+    width: auto;
+    height: 450px;
+    background-color: #fff;
+    border-radius: 50px;
+    min-width: 802px;
+    max-width: 1790px;
+}
+
+.spans{
+
+    transform: rotate(270deg);
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    white-space: nowrap;
+    height: min-content;
+    
+}
+.grid-container {
+    display: grid;
+  }
+
+.dashboard{
+    margin-bottom: 20%;
+} 
+.main-svg{
+    border-radius: 50px;
+    min-width: 595px !important;
+}
+
+.subject_name{
+    display: inline-block;
+    height: 100px;
+    align-content: center;
+    font-size: 80px;
+}
+.subject_avg{
+    font-size: 50px;
+    font-weight: bold;
+}
+.subject_link {
+    font-weight: 700;
+    display: inline-block;
+    align-content: center;
+    font-size: 40px;
+}
+.spans a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    background-color: #17a2b8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 0px;
+    text-align: center;
+    display: inline-block;
+    text-align: center;
+}
+.flex-item-1 {
+    flex: 1 1 0;
+}
+
+.flex-item-2 {
+    flex: 9 1 0; 
+}
+.transparent{
+    background: transparent;
+}
+.secondary{
+    align-items: center;
+    grid-template-columns: 1fr 9fr;
+    height: 350px;
+}
+.delete_mark,
+.delete_mark:hover,
+.delete_mark:focus,
+.delete_mark::before,
+.delete_mark::after {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background-image: url(../images/delete.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.delete{
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 0.1s linear;
+}
+
+
+.delete_mark:hover{
+    background-image: url(../images/delete-hover.svg);
+}
+
+.vertical_list{
+    display: grid;
+    row-gap: 50px;
+    grid-template-columns: repeat(4, 1fr); /* Creates four equal-width columns */
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: relative;
+    top: 100px;
+    justify-items: center;
+}
+.marks_list{
+    width: 100%;
+    list-style: none;
+}
+.marks_list{
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.mark p{
+    font-size: 20px;
+    text-align: center;
+    width: 90%;
+}
+.mark{
+    justify-content: center;
+    display: flex;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border-bottom  :solid .5px #999;
+}
+
+.vertical_subject{
+    min-width: 50%;
+    max-width: 50%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #fff;
+
+}
+
+.subject_title{
+    padding-right: 20px;
+    background: #31dbf6;
+    text-align: center;
+    font-size: 30px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.add_mark select{
+    max-height: 26px;
+    text-align: center;
+    width: 90%;
+    font-size: 20px;
+}
+.add_mark button{
+    max-height: 26px;
+    width: 10%;
+    height: fit-content;
+    font-size: 20px;
+}
+#add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #e0f2fe;
+    font-family: Arial, sans-serif;
+}
+#add-subject-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#add-subject-form label {
+    margin-bottom: 5px;
+}
+
+#add-subject-form input[type="text"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#add-subject-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#add-subject-form button:hover {
+    background-color: #0056b3;
+}
+
+@media screen and (min-width: 1920px) and (max-width: 1920px) {
+    .list {
+        width: 1920px !important;
+    }
+}
