@@ -10,7 +10,7 @@ class Subject {
     }
 
     getAvg(marks= this.marks) {
-        return this.roundToDecimalPlaces( marks.reduce((accumulator, currentValue) => accumulator + currentValue, 0)/marks.length, 1)
+        return this.roundToDecimalPlaces( marks.reduce((accumulator, currentValue) => accumulator + currentValue, 0)/marks.length, 2)
         
     }
 

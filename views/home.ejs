@@ -13,7 +13,7 @@
                 <div class="subject">
                     <a href="/subjects#<%= subject.title %>-div" style="text-decoration: none; color: black;" class="subject_link"><%= subject.title %></a>
                     <!-- <h3><%= subject.title %></h3> -->
-                    <p class="avg">Average: <%= subject.avg %></p>
+                    <p class="avg">Average: <%= subject.avg.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></p>
                 </div>
             <% }); %>
             <div class="add-new">

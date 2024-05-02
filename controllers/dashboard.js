@@ -12,6 +12,7 @@ const addMark = (req, res) => {
 }
 
 const deleteMark = (req, res) => {
+    // console.log(req.body);
     req.mainSubjects.deleteMark(req.body.name, req.body.id);
     req.subjects = req.mainSubjects.subjects;
     // res.redirect('/dashboard');

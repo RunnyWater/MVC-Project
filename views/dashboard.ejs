@@ -14,9 +14,7 @@
         <% let i = 0 %>
         <% subjects.forEach(subject => { %>
             <div class="vertical_subject">
-                <% if subject.marks.length < 15 %>
-                <p class="subject_title"><%= subject.title %></p>
-                <% else %>
+                <p id="<%= subject.title %>-label" class="subject_title" style="padding-right: <%= subject.marks.length < 15 ? '20px' : '40px' %>;"><%= subject.title %></p>
                 <div class="marks flex">
                     <ul class="marks_list" id="<%= subject.title %>">
                         <% i = 0; %>
@@ -50,6 +48,7 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     const form = document.getElementById('addMarkForm_<%= subject.title %>');
                     const ul = document.getElementById('<%= subject.title %>');
+                    const label = document.getElementById('<%= subject.title %>-label');
                     form.addEventListener('submit', function(event) {
                         event.preventDefault(); // Prevent the default form submission
                 
@@ -73,15 +72,46 @@
                                 throw new Error('Network response was not ok');
                             }
 
-                            let last_id =ul.querySelectorAll('.mark').length;;
-                            console.log(last_id);
+                            let last_id =ul.querySelectorAll('.mark').length;
 
                             const li = document.createElement('li');
                             li.className = 'mark <%= subject.title %>_mark';
                             li.innerHTML = `<p>${mark}</p><button id="${last_id}" class="transparent delete delete_mark"></button>`;
 
                             ul.insertBefore(li, form);
-
+                            const button = ul.querySelectorAll(`.mark`)[ ul.querySelectorAll(`.mark`).length-1].querySelector('button');
+                            button.addEventListener('click', function() {
+                                if(confirm("Are you sure you want to delete this mark")){
+                                    // Get the ID from the button's ID attribute
+                                    const id = button.id;
+                                    
+                                    // Send a fetch request to the server to delete the item
+                                    fetch(`/dashboard/delete-mark`, {
+                                        method: 'DELETE',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({ id: id, name: button.parentElement.parentElement.id })
+                                    })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+                                        if(ul.querySelectorAll('.mark').length <= 15) {
+                                            ul.parentElement.parentElement.querySelector('p').style.paddingRight = '20px';
+                                        }
+                                        button.parentElement.remove();
+                                    })
+                                    .catch(error => {
+                                        console.error('There was a problem with the fetch operation:', error);
+                                    });
+                                }
+                            })
+                            if(last_id < 14) {
+                                label.style.paddingRight = '20px';
+                            } else {
+                                label.style.paddingRight = '40px';
+                            }
                             form.reset();
                         })
                         .catch(error => {
@@ -99,31 +129,38 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Select all delete buttons
         const deleteButtons = document.querySelectorAll('.delete_mark');
-    
         // Attach click event listener to each button
         deleteButtons.forEach(button => {
+            const title = button.parentElement.parentElement.id;
             button.addEventListener('click', function() {
-                // Get the ID from the button's ID attribute
-                const id = this.id;
-    
-                // Send a fetch request to the server to delete the item
-                fetch(`/dashboard/delete-mark`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ id: id, name: button.parentElement.parentElement.id })
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                    if(confirm("Are you sure you want to delete this mark")){
+                        // Get the ID from the button's ID attribute
+                        const id = this.id;
+            
+                        // Send a fetch request to the server to delete the item
+                        fetch(`/dashboard/delete-mark`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: id, name: title })
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            const ul = this.parentElement.parentElement;
+                            if(ul.querySelectorAll('.mark').length <= 15) {
+                                ul.parentElement.parentElement.querySelector('p').style.paddingRight = '20px';
+                            }
+                            this.parentElement.remove();
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                        });
                     }
-                    this.parentElement.remove();
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
                 });
-            });
+            
         });
     });
     </script>

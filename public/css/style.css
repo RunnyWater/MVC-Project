@@ -117,6 +117,9 @@ body {
     width: 100%;
 }
 .title_div{
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    display: grid;
     height: 100px;
     text-align: center;
 }
@@ -128,14 +131,18 @@ body {
     width: auto;
     height: 450px;
     background-color: #fff;
-    border-radius: 50px;
+    border-radius: 0px 50px 0px 50px;
     min-width: 802px;
     max-width: 1790px;
 }
 
-.spans{
-
+.rotate_270{
     transform: rotate(270deg);
+}
+
+
+
+.spans{
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
@@ -193,9 +200,10 @@ body {
 .transparent{
     background: transparent;
 }
+
 .secondary{
     align-items: center;
-    grid-template-columns: 1fr 9fr;
+    grid-template-columns: 6fr 48fr;
     height: 350px;
 }
 .delete_mark,
@@ -220,6 +228,24 @@ body {
     transition: all 0.1s linear;
 }
 
+.delete_subject{
+    width: 50px;
+    display: flex;
+    position: absolute;
+    font-size: 40px;
+    /* height: 50px; */
+    top: 0%;
+    border: none;
+    background-color: #fff;
+}
+
+.delete_subject:hover{
+    background-color: red;
+}
+
+.parent-hover {
+    background-color: red;
+}
 
 .delete_mark:hover{
     background-image: url(../images/delete-hover.svg);
@@ -268,7 +294,7 @@ body {
 }
 
 .subject_title{
-    padding-right: 20px;
+    /* padding-right: 20px; */
     background: #31dbf6;
     text-align: center;
     font-size: 30px;

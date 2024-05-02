@@ -14,16 +14,43 @@
         <div id="<%= subject.title %>-div" style="height: 100px;"></div>
         <div class="list_item flex" >
             <div class="title_div">
+                    <button id="delete_<%= subject.title %>" class="delete_subject transparent hover-button">⤬</button>
                 <a href="/dashboard#<%= subject.title %>" style="text-decoration: none; color: black;" class="subject_name" ><%= subject.title %></a>
             </div>
             <div class="secondary grid-container">
-                <div class="flex spans">
-                    <p class="subject_avg"> AVG: <%= subject.avg %></p>
+                <div class="flex spans rotate_270">
+                    <p class="subject_avg"> AVG: <%= subject.avg.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></p>
                 </div>
                 <div class="plot" id='<%= subject.title %>'>
                 </div>
+                
+
             </div>
       </div>
+      <script>
+        document.getElementById("delete_<%= subject.title %>").addEventListener("click", function() {
+            if(confirm("Are you sure you want to delete this subject")){
+                fetch('/subjects/delete', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: '<%= subject.title %>' })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    document.getElementById("<%= subject.title %>-div").remove();
+                    this.parentElement.parentElement.remove();
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            }
+        })
+      </script>
+      
     <% }); %>
       
         
@@ -34,6 +61,21 @@
 
 
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.hover-button');
+        
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.parentElement.classList.add('parent-hover');
+                });
+        
+                button.addEventListener('mouseleave', function() {
+                    this.parentElement.classList.remove('parent-hover');
+                });
+            });
+        });
+        </script>
     <script>
       function calculateDesiredWidth(percentageToLeaveOut) {
           const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;

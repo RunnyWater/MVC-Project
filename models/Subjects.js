@@ -73,8 +73,8 @@ class Subjects {
         this.updateSubjects();
     }
     
-    async deleteMark(collection, mark) {
-        await this.db.collection(collection).deleteOne({mark: parseFloat(mark)});
+    async deleteMark(collection, id) {
+        await this.db.collection(collection).deleteOne({id: parseInt(id)});
 
         this.updateSubjects();
     }

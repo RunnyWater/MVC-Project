@@ -16,12 +16,20 @@ const postAddSubject = (req, res) => {
     res.redirect('/subjects');
 }
 
+const deleteSubject = (req, res) => {
+
+    req.mainSubjects.deleteSubject(req.body.name);
+    req.subjects = req.mainSubjects.subjects;
+    res.sendStatus(200);
+}
+
 
 
 module.exports = {
     getSubjects,
     getAddSubject,
-    postAddSubject
+    postAddSubject,
+    deleteSubject
 }
 
 
