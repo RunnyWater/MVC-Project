@@ -132,7 +132,7 @@ body {
     height: 450px;
     background-color: #fff;
     border-radius: 0px 50px 0px 50px;
-    min-width: 802px;
+    min-width: 1100px;
     max-width: 1790px;
 }
 
@@ -203,7 +203,7 @@ body {
 
 .secondary{
     align-items: center;
-    grid-template-columns: 6fr 48fr;
+    grid-template-columns: 1fr 9fr;
     height: 350px;
 }
 .delete_mark,
