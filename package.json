@@ -1,10 +1,10 @@
 {
-  "name": "mvc-project",
+  "name": "System Monitorowania Postępów w Nauce",
   "version": "1.0.0",
   "description": "aplikacja, która umożliwi użytkownikom śledzenie postępów w nauce\r różnych przedmiotów lub umiejętności. Użytkownicy mogą dodawać nowe przedmioty do śledzenia,\r oznaczać postępy i monitorować swoje osiągnięcia.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./app.js"
   },
   "author": "",
   "license": "ISC",

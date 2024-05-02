@@ -19,9 +19,10 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+const DATASET_NAME = process.env.DATASET_NAME; // please change to YOUR dataset name
+const CONNECTION_STRING = process.env.CONNECTION_STRING; // please change to YOUR MongoDB connection string
 
-
-let mainSubjects = new Subjects(process.env.DATASET_NAME, process.env.CONNECTION_STRING);
+let mainSubjects = new Subjects(DATASET_NAME, CONNECTION_STRING);
 const fetchSubjects = async (req, res, next) => {
     try {
         req.mainSubjects = mainSubjects;
