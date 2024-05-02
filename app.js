@@ -26,16 +26,14 @@ const fetchSubjects = async (req, res, next) => {
     try {
         req.mainSubjects = mainSubjects;
         req.subjects = mainSubjects.subjects;
-        next(); // Proceed to the next middleware or route handler
+        next();
     } catch (error) {
         console.error("Error fetching subjects:", error);
-        // Handle the error appropriately, e.g., by sending an error response
         res.status(500).send("An error occurred while fetching subjects.");
     }
 }; 
 app.use(fetchSubjects);
 
-// Start the server
 app.listen(3000, () => {
     console.log(`Server running on port http://localhost:3000`);
 });
