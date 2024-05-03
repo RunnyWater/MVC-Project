@@ -19,7 +19,7 @@ Aby uruchomić aplikację, wykonaj następujące kroki:
 2. Sklonuj repozytorium na swoim lokalnym komputerze.
 3. Otwórz terminal w katalogu projektu.
 4. Uruchom `npm install` aby zainstalować wymagane pakiety.
-5. Skonfiguruj połączenie z bazą danych MongoDB, podając link do swojej bazy danych oraz nazwę bazy danych.
+5. Skonfiguruj połączenie z bazą danych <a href='https://www.mongodb.com/products/platform/cloud' target="_blank">MongoDB</a>, podając link do swojej bazy danych oraz nazwę bazy danych. 
 
 ## Wymagania
 
