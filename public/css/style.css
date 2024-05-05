@@ -7,7 +7,6 @@
 }
 body {
     min-height: 100vh;
-    overflow-x: auto; /* Prevents horizontal scrolling */
     overflow-y: auto;
     margin: 0;
     padding: 0;
@@ -233,7 +232,6 @@ body {
     display: flex;
     position: absolute;
     font-size: 40px;
-    /* height: 50px; */
     top: 0%;
     border: none;
     background-color: #fff;
@@ -254,7 +252,7 @@ body {
 .vertical_list{
     display: grid;
     row-gap: 50px;
-    grid-template-columns: repeat(4, 1fr); /* Creates four equal-width columns */
+    grid-template-columns: repeat(4, 1fr);
     width: 100%;
     padding-left: 5%;
     padding-right: 5%;
@@ -294,7 +292,6 @@ body {
 }
 
 .subject_title{
-    /* padding-right: 20px; */
     background: #31dbf6;
     text-align: center;
     font-size: 30px;

@@ -9,7 +9,6 @@ class Subjects {
         this.collection_name = dataset_name;
         this.connection_string =connection_string;
         this.client = new MongoClient(this.connection_string);
-        // this.client = new MongoClient(this.connection_string);
         
         (async () => {
             await this.connectToDatabase().then(() => {
@@ -43,9 +42,7 @@ class Subjects {
 
     async listCollections() {
         try {
-            // Get the list of collections
             const collections = await this.db.listCollections().toArray();
-            // Extract and log the names of the collections
             const collectionNames = collections.slice(0, -1).map(collection => collection.name);
             return collectionNames;
         } catch (err) {
@@ -85,7 +82,6 @@ class Subjects {
 
     async getMarksFromCollection(name) {
         try {
-            // Fetch all documents from the 'math' collection
             const documents = await this.db.collection(name).find().toArray();
             return (documents.map(doc => doc.mark));
         } catch (err) {
